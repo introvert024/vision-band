@@ -1,6 +1,6 @@
 # Smart Blind Headband
 
-![Smart Blind Headband](link_to_your_headband_image.png)
+![Smart Blind Headband](Smart-blind-headband/WhatsApp Image 2023-11-10 at 2.47.47 PM.jpeg)
 
 The Smart Blind Headband is an innovative wearable solution designed to enhance the navigation and interaction capabilities of visually impaired individuals. By integrating Raspberry Pi Zero, ultrasonic sensors, and a high-resolution camera, this device enables real-time obstacle detection and advanced image recognition, contributing to increased independence and safety for users.
 
