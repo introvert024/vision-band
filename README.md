@@ -1,4 +1,4 @@
-# Smart Blind Headband
+# Smart Blind Headband by krish verma 
 
 ![Smart Blind Headband](Smart-blind-headband/WhatsApp Image 2023-11-10 at 2.47.47 PM.jpeg)
 
@@ -17,6 +17,33 @@ The Smart Blind Headband is an innovative wearable solution designed to enhance 
 - Pi Camera
 
 ## Getting Started
-
+  ## installing and updating basic dependencies 
 ```bash
-Soon the code and process will be there 
+sudo apt update
+sudo apt full-upgrade
+sudo apt-get install libcblas-dev # not important 
+sudo apt-get install libhdf5-dev
+sudo apt-get install libhdf5-serial-dev
+sudo apt-get install libatlas-base-dev
+sudo apt-get install libjasper-dev # not important 
+sudo apt-get install libqtgui4  # not important 
+sudo apt-get install libqt4-test # not important
+pip install opencv-python==4.5.3.56
+pip install opencv-contrib-python
+pip install opencv-python-headless
+pip install opencv-contrib-python-headless
+pip install matplotlib
+pip install imutils
+## extra -- sudo apt-get install -y libatlas-base-dev libhdf5-dev libhdf5-serial-dev libatlas-base-dev libjasper-dev  libqtgui4  libqt4-test
+```
+## now install and steup virtual enviroment 
+```bash
+sudo apt install python3-venv
+python3 -m venv env ## Run the following command to create a virtual environment. Replace env with the name you want for your virtual environment.
+source env/bin/activate ## Activate the virtual environment
+
+
+
+
+
+
