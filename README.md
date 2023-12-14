@@ -17,10 +17,20 @@ The Smart Blind Headband is an innovative wearable solution designed to enhance 
 - Pi Camera
 
 ## Getting Started
+
   ## installing and updating basic dependencies 
 ```bash
 sudo apt update
 sudo apt full-upgrade
+```
+## now install and steup virtual enviroment 
+```bash
+sudo apt install python3-venv
+python3 -m venv env ## Run the following command to create a virtual environment. Replace env with the name you want for your virtual environment.
+source env/bin/activate ## Activate the virtual environment
+```
+## Now install all packages in the ENV
+```bash
 sudo apt-get install libcblas-dev # not important 
 sudo apt-get install libhdf5-dev
 sudo apt-get install libhdf5-serial-dev
@@ -36,14 +46,41 @@ pip install matplotlib
 pip install imutils
 ## extra -- sudo apt-get install -y libatlas-base-dev libhdf5-dev libhdf5-serial-dev libatlas-base-dev libjasper-dev  libqtgui4  libqt4-test
 ```
-## now install and steup virtual enviroment 
-```bash
-sudo apt install python3-venv
-python3 -m venv env ## Run the following command to create a virtual environment. Replace env with the name you want for your virtual environment.
-source env/bin/activate ## Activate the virtual environment
 
+ ## now object detection 
+ Clone the repo and go to the object detection folder 
+ ```bash
+ git clone https://github.com/introvert024/Smart-blind-headband.git
+ cd Object_detection
+ ```
 
+ ## now run the object detection 
 
-
-
-
+ make sure to enable pi camera with "sudo-raspi config" 
+ ```bash
+ python object_detection.py --prototxt MobileNetSSD_deploy.prototxt.txt --model MobileNetSSD_deploy.caffemodel
+ ```
+ ## List of objects it can detect currently 
+ ```bash
+  "aeroplane
+  "background
+  "bicycle
+  "bird
+  "boat
+  "bottle
+  "bus
+  "car
+  "cat
+  "chair
+  "cow
+  "diningtable
+  "dog
+  "horse
+  "motorbike
+  "person
+  "pottedplant
+  "sheep
+  "sofa
+  "train
+  "tvmonitor
+```
