@@ -51,7 +51,7 @@ pip install imutils
  Clone the repo and go to the object detection folder 
  ```bash
  git clone https://github.com/introvert024/Smart-blind-headband.git
- cd Object_detection
+ cd Smart-blind-headband/Object_detection
  ```
 
  ## now run the object detection 
