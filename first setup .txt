@@ -1,0 +1,33 @@
+sudo nano /etc/apt/sources.list
+deb http://mirror.ox.ac.uk/sites/archive.raspbian.org/archive/raspbian/ bullseye main contrib non-free rpi
+sudo apt update
+sudo apt full-upgrade
+pip install opencv-python==4.5.3.56 
+startlxde // startxfce4
+---------------------------
+# optionals pip install --upgrade pip setuptools wheel ,,, pip3 install opencv-python==4.7.0.68
+# if possible pip3 install opencv-python or then,,
+---------------------------
+python3 -m venv env ## Run the following command to create a virtual environment. Replace env with the name you want for your virtual environment.
+source env/bin/activate ## for going in virtual inviroment 
+#######################################
+sudo apt-get install libcblas-dev ##
+sudo apt-get install libhdf5-dev
+sudo apt-get install libopenblas-dev
+sudo apt-get install libgtk2.0-dev pkg-config
+sudo apt-get install libhdf5-serial-dev
+sudo apt-get install libatlas-base-dev
+sudo apt-get install libjasper-dev ##
+sudo apt-get install libqtgui4  ##
+sudo apt-get install libqt4-test ##
+pip3 install opencv-contrib-python; sudo apt-get install -y libatlas-base-dev libhdf5-dev libhdf5-serial-dev libatlas-base-dev libjasper-dev  libqtgui4  libqt4-test
+pip install opencv-contrib-python==4.5.3.56 
+pip install opencv-python-headless==4.5.3.56 
+pip install opencv-contrib-python-headless==4.5.3.56 
+pip install matplotlib
+pip install imutils 
+
+
+
+
+
