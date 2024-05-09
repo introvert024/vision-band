@@ -1,4 +1,4 @@
-# Smart Blind Headband by krish verma 
+# satge 1 without prompt vison band Headband by krish verma 
 
 ![Smart Blind Headband](Smart-blind-headband/WhatsApp Image 2023-11-10 at 2.47.47 PM.jpeg)
 
@@ -12,8 +12,8 @@ The Smart Blind Headband is an innovative wearable solution designed to enhance 
 
 ## Hardware Requirements
 
-- Raspberry Pi Zero
-- Ultrasonic Sensors
+- Raspberry Pi 4/5
+- lidar sesnor
 - Pi Camera
 
 ## Getting Started
