@@ -1,4 +1,4 @@
-# satge 1 without prompt vison band Headband by krish verma 
+# stage 1 without prompt vison band Headband by krish verma 
 
 ![Smart Blind Headband](Smart-blind-headband/WhatsApp Image 2023-11-10 at 2.47.47 PM.jpeg)
 
