@@ -60,56 +60,51 @@ def speak(text):
     except PermissionError as e:
         print(f"PermissionError: {e}")
 
-def process_image(client):
+def process_image(client, frame, result_event, face_recognition_event):
+    result = client.predict(
+        image=handle_file('image.jpg'),
+        api_name="/predict"
+    )
+    print("Prediction result:", result)
+    result_event["result"] = result
+
+    face_recognition_event.set()
+
+def main_loop():
+    client = Client("krishnv/ImageCaptioning")
+
     while True:
         frame = capture_and_save_image()
         if frame is not None:
-            # Use Gradio client to predict something based on the saved image
-            result = client.predict(
-                image=handle_file('image.jpg'),
-                api_name="/predict"
-            )
-            print("Prediction result:", result)
-            
-            # Check for specific keywords in the result
-            keywords = ["person", "man", "woman", "young man"]
-            if any(keyword in result.lower() for keyword in keywords):
-                print("Keyword detected in result.")
-                # Get faces and names using face recognition
-                img, names = recognize_faces(frame)
-                print("Recognized names:", names)
+            result_event = {}
+            face_recognition_event = threading.Event()
 
-                # Replace keywords with recognized names or "KNOWN FACE"
-                if "person" in result.lower():
-                    result = result.lower().replace("a person", names[0] if names else "a person")
-                if "man" in result.lower():
-                    result = result.lower().replace("a man", names[0] if names else "a man")
-                if "woman" in result.lower():
-                    result = result.lower().replace("a woman", names[0] if names else "a woman")
-                if "young man" in result.lower():
-                    result = result.lower().replace("a young man", names[0] if names else "a young man")
-                
-                # Replace "mirror" and "windows" with "camera"
-                result = result.replace("mirror", "camera").replace("windows", "camera")
-                
-                speak("I can see " + result)
-            else:
-                # Replace "mirror" and "windows" with "camera"
-                result = result.replace("mirror", "camera").replace("windows", "camera")
-                
-                # Speak the result using gtts
-                speak("I can see " + result)
+            prediction_thread = threading.Thread(target=process_image, args=(client, frame, result_event, face_recognition_event))
+            prediction_thread.start()
+
+            img, names = recognize_faces(frame)
+            face_recognition_event.wait()  # Wait for face recognition to complete
+
+            result = result_event.get("result", "")
+            print("Recognized names:", names)
+
+            # Replace keywords with recognized names or "KNOWN FACE"
+            if "person" in result.lower():
+                result = result.lower().replace("a person", names[0] if names else "a person")
+            if "man" in result.lower():
+                result = result.lower().replace("a man", names[0] if names else "a man")
+            if "woman" in result.lower():
+                result = result.lower().replace("a woman", names[0] if names else "a woman")
+            if "young man" in result.lower():
+                result = result.lower().replace("a young man", names[0] if names else "a young man")
+            
+            # Replace "mirror" and "windows" with "camera"
+            result = result.replace("mirror", "camera").replace("windows", "camera")
+            
+            speak("I can see " + result)
         
         # Optionally, add a delay between iterations to avoid capturing images too rapidly
         time.sleep(1)  # Wait for 1 second (1000 milliseconds)
 
 if __name__ == "__main__":
-    # Initialize Gradio client only once
-    client = Client("krishnv/ImageCaptioning")
-    
-    # Start the image processing in a separate thread
-    threading.Thread(target=process_image, args=(client,), daemon=True).start()
-    
-    # Keep the main thread running
-    while True:
-        time.sleep(1)
+    main_loop()
