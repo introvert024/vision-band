@@ -15,21 +15,12 @@ Welcome to the official repository of **VIBA** - an innovative IoT solution desi
    - [Advanced Video Capturing](#advanced-video-capturing)
    - [Face Recognition](#face-recognition)
 3. [Installation](#installation)
-4. [Usage](#usage)
-   - [GPS Navigation](#using-gps-navigation)
-   - [Distance Calculation](#using-distance-calculation)
-   - [Object Reading](#using-object-reading)
-   - [Image Capturing](#using-image-capturing)
-   - [Advanced Video Capturing](#using-advanced-video-capturing)
-   - [Face Recognition](#using-face-recognition)
-5. [Architecture](#architecture)
+4. [Architecture](#architecture)
    - [Hardware Components](#hardware-components)
    - [Software Components](#software-components)
-6. [API Documentation](#api-documentation)
-7. [Contributing](#contributing)
-8. [License](#license)
-9. [Acknowledgements](#acknowledgements)
-
+5. [API Documentation](#api-documentation)
+6. [License](#license)
+7. [Acknowledgements](#acknowledgements)
 ---
 
 ## Introduction
@@ -236,10 +227,10 @@ The architecture of VIBA comprises both hardware and software components, design
 ---
 
 ## API Documentation
-
+-The API is private and used under certain conditions 
 VIBA provides a custom experience developers to extend and customize its functionalities. Below is an overview of the available APIs.
 
-### GPS Navigation API
+### GPS Navigation 
 
 - `get_current_location`: Returns the current GPS coordinates.
 - `get_navigation_instructions()`: Returns the next set of navigation instructions.
@@ -247,33 +238,21 @@ VIBA provides a custom experience developers to extend and customize its functio
 ### Distance Calculation (hardware)
 
 - `distance_to_object`: Use the advance ultra sonic water sensor 
-### Book Reading API
+### Book Reading 
 
 - `Pytesseract`: Identifies text in the given image.
 
-### Image Captioning API
+### Image Captioning 
 
 - `Hugging face model`: model running on hugging face
 
 
-### Face Recognition API
+### Face Recognition 
 
 - The API is private and used under certain conditions 
 
 ---
 
-## Contributing
-
-We welcome contributions from the community to help improve VIBA. If you are interested in contributing, please follow the guidelines below:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Commit your changes and push to your branch.
-4. Create a pull request and provide a detailed description of your changes.
-
-Please ensure your code adheres to our coding standards and includes appropriate tests.
-
----
 
 ## License
 
