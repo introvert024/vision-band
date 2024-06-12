@@ -58,6 +58,7 @@ if __name__ == "__main__":
             # Recognize faces and print the results
             img, names = face_recognition.recognize_faces()
             print("Recognized names:", names)
+            speak(result + names)
             if img is not None:
                 cv2.imshow("face Detection", img)
                 cv2.waitKey(0)
