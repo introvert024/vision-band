@@ -40,12 +40,6 @@ def speak(text):
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
 
-def play_custom_audio(filename):
-    pygame.mixer.init()
-    pygame.mixer.music.load(filename)
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
 
 if __name__ == "__main__":
     if capture_and_save_image():
@@ -60,9 +54,7 @@ if __name__ == "__main__":
         # Check for specific keywords in the result
         keywords = ["person", "man", "woman"]
         if any(keyword in result.lower() for keyword in keywords):
-            print("Keyword detected in result. Playing custom audio.")
-            play_custom_audio("custom_audio.mp3")
-            
+            print("Keyword detected in result.")
             # Recognize faces and print the results
             img, names = face_recognition.recognize_faces()
             print("Recognized names:", names)
