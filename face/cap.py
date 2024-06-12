@@ -57,8 +57,18 @@ if __name__ == "__main__":
             # Recognize faces and print the results
             img, names = face_recognition.recognize_faces()
             print("Recognized names:", names)
-            combined_result = result + " " + ", ".join(names)
+
+            # Replace keywords with recognized names or "KNOWN FACE"
+            if "person" in result.lower():
+                result = result.lower().replace("a person", names[0] if names else "KNOWN FACE")
+            if "man" in result.lower():
+                result = result.lower().replace("a man", names[0] if names else "KNOWN FACE")
+            if "woman" in result.lower():
+                result = result.lower().replace("a woman", names[0] if names else "KNOWN FACE")
+
+            combined_result = result
             speak(combined_result)
+            
             if img is not None:
                 cv2.imshow("face Detection", img)
                 cv2.waitKey(0)
