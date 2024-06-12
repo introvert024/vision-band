@@ -1,5 +1,8 @@
 import cv2
 from gradio_client import Client, handle_file
+from gtts import gTTS
+import os
+import pygame
 
 def capture_and_save_image():
     # Open the default camera (usually 0 for built-in webcams)
@@ -25,6 +28,16 @@ def capture_and_save_image():
 
     print("Image captured and saved as 'image.jpg'.")
 
+def speak(text):
+    tts = gTTS(text=text, lang='en')
+    tts.save("result.mp3")
+    
+    pygame.mixer.init()
+    pygame.mixer.music.load("result.mp3")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+
 if __name__ == "__main__":
     capture_and_save_image()
 
@@ -35,3 +48,6 @@ if __name__ == "__main__":
         api_name="/predict"
     )
     print(result)
+    
+    # Speak the result using gtts
+    speak(result)
