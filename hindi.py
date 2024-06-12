@@ -1,3 +1,4 @@
+import subprocess
 from gtts import gTTS
 import pygame
 import requests
@@ -51,5 +52,5 @@ if __name__ == "__main__":
 
     button = Button(2)
     button.wait_for_press()
-    play_audio(button_audio)
+    subprocess.run(['python', 'english.py'])
 
