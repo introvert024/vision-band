@@ -3,7 +3,11 @@ from gradio_client import Client, handle_file
 from gtts import gTTS
 import os
 import pygame
-import face_recognition  # Ensure face_recognition.py is in the same directory or correctly referenced
+import threading
+import time
+
+# Import face recognition functions from face_recognition.py
+from face_recognition import recognize_faces
 
 def capture_and_save_image():
     # Open the default camera (usually 0 for built-in webcams)
@@ -11,7 +15,7 @@ def capture_and_save_image():
 
     if not camera.isOpened():
         print("Error: Could not open camera.")
-        return False
+        return None
 
     # Capture a single frame from the camera
     ret, frame = camera.read()
@@ -19,7 +23,7 @@ def capture_and_save_image():
     if not ret:
         print("Error: Failed to capture image.")
         camera.release()
-        return False
+        return None
 
     # Save the captured frame as an image file
     cv2.imwrite("image.jpg", frame)
@@ -28,7 +32,7 @@ def capture_and_save_image():
     camera.release()
 
     print("Image captured and saved as 'image.jpg'.")
-    return True
+    return frame
 
 def speak(text):
     tts = gTTS(text=text, lang='en')
@@ -56,12 +60,10 @@ def speak(text):
     except PermissionError as e:
         print(f"PermissionError: {e}")
 
-if __name__ == "__main__":
-    # Initialize Gradio client only once
-    client = Client("krishnv/ImageCaptioning")
-    
+def process_image(client):
     while True:
-        if capture_and_save_image():
+        frame = capture_and_save_image()
+        if frame is not None:
             # Use Gradio client to predict something based on the saved image
             result = client.predict(
                 image=handle_file('image.jpg'),
@@ -73,8 +75,8 @@ if __name__ == "__main__":
             keywords = ["person", "man", "woman", "young man"]
             if any(keyword in result.lower() for keyword in keywords):
                 print("Keyword detected in result.")
-                # Recognize faces and print the results
-                img, names = face_recognition.recognize_faces()
+                # Get faces and names using face recognition
+                img, names = recognize_faces(frame)
                 print("Recognized names:", names)
 
                 # Replace keywords with recognized names or "KNOWN FACE"
@@ -84,11 +86,30 @@ if __name__ == "__main__":
                     result = result.lower().replace("a man", names[0] if names else "a man")
                 if "woman" in result.lower():
                     result = result.lower().replace("a woman", names[0] if names else "a woman")
-                combined_result = result
-                speak("i can see" + combined_result)
+                if "young man" in result.lower():
+                    result = result.lower().replace("a young man", names[0] if names else "a young man")
+                
+                # Replace "mirror" and "windows" with "camera"
+                result = result.replace("mirror", "camera").replace("windows", "camera")
+                
+                speak("I can see " + result)
             else:
+                # Replace "mirror" and "windows" with "camera"
+                result = result.replace("mirror", "camera").replace("windows", "camera")
+                
                 # Speak the result using gtts
                 speak("I can see " + result)
         
         # Optionally, add a delay between iterations to avoid capturing images too rapidly
-        cv2.waitKey(1000)  # Wait for 1 second (1000 milliseconds)
+        time.sleep(1)  # Wait for 1 second (1000 milliseconds)
+
+if __name__ == "__main__":
+    # Initialize Gradio client only once
+    client = Client("krishnv/ImageCaptioning")
+    
+    # Start the image processing in a separate thread
+    threading.Thread(target=process_image, args=(client,), daemon=True).start()
+    
+    # Keep the main thread running
+    while True:
+        time.sleep(1)

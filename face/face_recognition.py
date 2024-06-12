@@ -27,24 +27,22 @@ def draw_boundary(img, classifier, scaleFactor, minNeighbors, color, text, clf):
      
     return img, names
 
-def recognize_faces():
+def recognize_faces(image):
     # loading classifier
     faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
     clf = cv2.face.LBPHFaceRecognizer_create()
     clf.read("classifier.xml")
 
-    video_capture = cv2.VideoCapture(0)
-    ret, img = video_capture.read()
-    if ret:
-        img, names = draw_boundary(img, faceCascade, 1.3, 6, (255,255,255), "Face", clf)
-        video_capture.release()
+    if image is not None:
+        img, names = draw_boundary(image, faceCascade, 1.3, 6, (255,255,255), "Face", clf)
         return img, names
     else:
-        video_capture.release()
         return None, []
 
 if __name__ == "__main__":
-    img, names = recognize_faces()
+    # Test with an example image
+    image = cv2.imread("image.jpg")
+    img, names = recognize_faces(image)
     print("Recognized names:", names)
     if img is not None:
         cv2.imshow("face Detection", img)
