@@ -11,8 +11,8 @@ def play_audio(filename):
         pygame.time.Clock().tick(10)
 
 def handle_button_press():
-    button1 = Button(2)  # Assuming button 1 is connected to GPIO pin 2
-    button2 = Button(3)  # Assuming button 2 is connected to GPIO pin 3
+    button1 = Button(2)  # right side
+    button2 = Button(3)  # left side
     
     while True:
         button1.wait_for_press()

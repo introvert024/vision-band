@@ -31,10 +31,10 @@ def check_internet(url='http://www.google.com/', timeout=5):
         return False
 
 # Paths to your audio files
-start_audio = 'sound/start.wav'
-internet_on_audio = 'sound/start1.mp3'
-internet_off_audio = 'sound/nointernet.mp3'
-button_audio = 'sound/button.mp3'
+start_audio = 'sound/hindi/start.wav'
+internet_on_audio = 'sound/hindi/start1.mp3'
+internet_off_audio = 'sound/hindi/nointernet.mp3'
+button_audio = 'sound/hindi/button.mp3'
 
 if __name__ == "__main__":
     # Play the initial start audio
