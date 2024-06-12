@@ -86,7 +86,6 @@ def main_loop():
             face_recognition_event.wait()  # Wait for face recognition to complete
 
             result = result_event.get("result", "")
-            print("Recognized names:", names)
 
             # Replace keywords with recognized names or "KNOWN FACE"
             if "person" in result.lower():
@@ -102,6 +101,7 @@ def main_loop():
             result = result.replace("mirror", "camera").replace("windows", "camera")
             
             speak("I can see " + result)
+            print("Recognized names:", names)
         
         # Optionally, add a delay between iterations to avoid capturing images too rapidly
         time.sleep(1)  # Wait for 1 second (1000 milliseconds)
