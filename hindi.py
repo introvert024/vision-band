@@ -52,5 +52,5 @@ if __name__ == "__main__":
 
     button = Button(27)
     button.wait_for_press()
-    subprocess.run(['python', 'object/caption.py'])
+    subprocess.run(['python', 'face_hindi/cap.py'])
 
