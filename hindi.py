@@ -59,5 +59,4 @@ if __name__ == "__main__":
         subprocess.run(['python', 'face_hindi/cap.py'])
     except Exception as e:
         print(f"Error: {e}")
-    finally:
         cleanup(button)
