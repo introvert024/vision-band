@@ -21,3 +21,6 @@ pandas==2.2.2
 gradio
 python-doctr
 python-doctr[torch]
+pygame
+gpiozero
+gTTS
