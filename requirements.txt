@@ -1,13 +1,7 @@
-sudo apt install tesseract-ocr
-sudo apt install libtesseract-dev
-pip install opencv-python pillow pytesseract
-pip install python-doctr  
-pip install "python-doctr[tf]"
-# for PyTorch
-pip install "python-doctr[torch]
-pip install opencv-python
-pip install opencv-contrib-python
-pip install matplotlib
+matplotlib
+opencv-python
+opencv-contrib-python
+imutils
 certifi==2022.12.7
 distlib==0.3.6
 filelock==3.9.0
@@ -21,5 +15,12 @@ pytesseract==0.3.10
 PyYAML==6.0.1
 virtualenv==20.20.0
 virtualenv-clone==0.5.7
-pip install markupsafe==2.1.5 fastapi==0.111.0 pandas==2.2.2
-pip install gradio
+markupsafe==2.1.5
+fastapi==0.111.0
+pandas==2.2.2
+gradio
+python-doctr
+python-doctr[torch]
+pygame
+gpiozero
+gTTS

@@ -50,7 +50,7 @@ if __name__ == "__main__":
     # Play the button audio
     play_audio(button_audio)
 
-    button = Button(2)
+    button = Button(27)
     button.wait_for_press()
-    subprocess.run(['python', 'object/caption.py'])
+    subprocess.run(['python', 'face_hindi/cap.py'])
 
