@@ -37,10 +37,7 @@ if __name__ == "__main__":
     # Play audio files before waiting for button press
     play_audio("hindi.mp3")
     play_audio("english.mp3")
-
-    # Set up the timer to automatically exit after 5 seconds
-    timer = Timer(5.0, auto_exit)
-    timer.start()
+    print("main.py completed")
     
     try:
         # Start waiting for button presses
