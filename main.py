@@ -2,6 +2,7 @@ import subprocess
 import time
 import pygame
 from gpiozero import Button
+from threading import Timer
 
 def play_audio(filename):
     pygame.mixer.init()
@@ -10,10 +11,7 @@ def play_audio(filename):
     while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
 
-def handle_button_press():
-    button1 = Button(2)  # right side
-    button2 = Button(3)  # left side
-    
+def handle_button_press(button1, button2):
     while True:
         button1.wait_for_press()
         subprocess.run(['python', 'hindi.py'])
@@ -21,10 +19,30 @@ def handle_button_press():
         button2.wait_for_press()
         subprocess.run(['python', 'english.py'])
 
+def cleanup(button1, button2):
+    button1.close()
+    button2.close()
+    print("GPIO cleaned up. Exiting program.")
+
+def auto_exit():
+    print('Timeout reached. Exiting automatically.')
+    cleanup(button1, button2)
+    exit(0)
+
 if __name__ == "__main__":
+    button1 = Button(15)  # right side
+    button2 = Button(27)  # left side
+
     # Play audio files before waiting for button press
     play_audio("hindi.mp3")
     play_audio("english.mp3")
+
+    # Set up the timer to automatically exit after 5 seconds
+    timer = Timer(5.0, auto_exit)
+    timer.start()
     
-    # Start waiting for button presses
-    handle_button_press()
+    try:
+        # Start waiting for button presses
+        handle_button_press(button1, button2)
+    except KeyboardInterrupt:
+        cleanup(button1, button2)
