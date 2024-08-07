@@ -15,9 +15,10 @@ def handle_button_press(button1, button2):
     while True:
         button1.wait_for_press()
         subprocess.run(['python', 'hindi.py'])
-        
+        button1.close()  # Ensure button is released
         button2.wait_for_press()
         subprocess.run(['python', 'english.py'])
+        button2.close()  # Ensure button is released
 
 def cleanup(button1, button2):
     button1.close()
@@ -44,5 +45,6 @@ if __name__ == "__main__":
     try:
         # Start waiting for button presses
         handle_button_press(button1, button2)
-    except KeyboardInterrupt:
+    except Exception as e:
+        print(f"Error: {e}")
         cleanup(button1, button2)
