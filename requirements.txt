@@ -1,6 +1,7 @@
 matplotlib
 opencv-python
 opencv-contrib-python
+imutils
 certifi==2022.12.7
 distlib==0.3.6
 filelock==3.9.0
