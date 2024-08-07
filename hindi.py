@@ -23,10 +23,6 @@ def check_internet(url='http://www.google.com/', timeout=5):
     except requests.RequestException:
         return False
 
-def cleanup(button):
-    if button is not None:
-        button.close()
-        print("GPIO cleaned up in hindi.py.")
 
 # Paths to your audio files
 start_audio = 'sound/hindi/start.wav'
@@ -47,16 +43,8 @@ if __name__ == "__main__":
             play_audio(internet_off_audio)
         
         # Play the button audio
-        play_audio(button_audio)
-
-        # Initialize the button
-        button = Button(15)
-        
-        # Wait for button press
-        button.wait_for_press()
-        
+        play_audio(button_audio) 
         # Run the next script after button press
         subprocess.run(['python', 'face_hindi/cap.py'])
     except Exception as e:
         print(f"Error: {e}")
-        cleanup(button)
