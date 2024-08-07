@@ -56,7 +56,7 @@ if __name__ == "__main__":
         button.wait_for_press()
         
         # Run the next script after button press
-        subprocess.run(['python', 'object/caption.py'])
+        subprocess.run(['python', 'face_hindi/cap.py'])
     except Exception as e:
         print(f"Error: {e}")
     finally:
