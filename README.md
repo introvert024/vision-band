@@ -109,6 +109,7 @@ Ensure you have the following prerequisites installed on your system:
 1. Clone the VIBA repository from GitHub:
 
 ```bash
+sudo apt update && sudo apt full-upgrade -y && sudo apt install -y tesseract-ocr libtesseract-dev libcblas-dev libhdf5-dev libopenblas-dev libgtk2.0-dev pkg-config libhdf5-serial-dev libatlas-base-dev libjasper-dev libqtgui4 libqt4-test
 git clone https://github.com/yourusername/VIBA.git
 cd VIBA
 ```
