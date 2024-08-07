@@ -24,3 +24,8 @@ python-doctr[torch]
 pygame
 gpiozero
 gTTS
+lgpio
+RPi
+pigpio
+gradio_client
+translate
