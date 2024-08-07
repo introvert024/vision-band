@@ -24,8 +24,9 @@ def check_internet(url='http://www.google.com/', timeout=5):
         return False
 
 def cleanup(button):
-    button.close()
-    print("GPIO cleaned up in hindi.py.")
+    if button is not None:
+        button.close()
+        print("GPIO cleaned up in hindi.py.")
 
 # Paths to your audio files
 start_audio = 'sound/hindi/start.wav'
@@ -34,6 +35,7 @@ internet_off_audio = 'sound/hindi/nointernet.mp3'
 button_audio = 'sound/hindi/button.mp3'
 
 if __name__ == "__main__":
+    button = None
     try:
         # Play the initial start audio
         play_audio(start_audio)
@@ -48,7 +50,7 @@ if __name__ == "__main__":
         play_audio(button_audio)
 
         # Initialize the button
-        button = Button(15)
+        button = Button(2)
         
         # Wait for button press
         button.wait_for_press()
