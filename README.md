@@ -118,6 +118,7 @@ cd VIBA
 
 ```bash
 pip install -r requirements.txt
+source env/bin/activate
 ```
 
 3. Configure the GPS and camera modules according to the hardware setup guide provided in the `docs/hardware_setup.md`.
