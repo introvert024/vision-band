@@ -50,7 +50,7 @@ if __name__ == "__main__":
         play_audio(button_audio)
 
         # Initialize the button
-        button = Button(2)
+        button = Button(15)
         
         # Wait for button press
         button.wait_for_press()
