@@ -1,5 +1,6 @@
 import os
 import subprocess
+import cv2  # Import OpenCV for image handling
 import pygame
 import threading
 import time
@@ -50,14 +51,17 @@ def speak(text):
         print(f"PermissionError: {e}")
 
 def process_image(client, image_path, result_event, face_recognition_event):
-    result = client.predict(
-        image=handle_file(image_path),
-        api_name="/predict"
-    )
-    print("Prediction result:", result)
-    result_event["result"] = result
-
-    face_recognition_event.set()
+    try:
+        result = client.predict(
+            image=handle_file(image_path),
+            api_name="/predict"
+        )
+        print("Prediction result:", result)
+        result_event["result"] = result
+    except Exception as e:
+        print(f"Error in processing image: {e}")
+    finally:
+        face_recognition_event.set()
 
 def main_loop():
     client = Client("krishnv/ImageCaptioning")
@@ -95,7 +99,7 @@ def main_loop():
             translation = translator.translate(result)
             
             # Speak the translated text
-            speak("मैं देख सकती हूँ" + translation)
+            speak("मैं देख सकती हूँ " + translation)
             print("Recognized names:", names)
             print("Original Caption:", result)
             print("Translated Caption:", translation)
