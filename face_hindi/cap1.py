@@ -12,12 +12,12 @@ def capture_and_save_image():
     image_path = "image.jpg"
 
     try:
-        # Capture a still image with no preview
+        # Capture a still image without a preview
         subprocess.run([
-            "libcamera-vid", 
-            "-t", "1",  # Duration of the recording (1 ms, essentially capturing a single frame)
-            "--no-preview", 
-            "-o", image_path
+            "libcamera-still", 
+            "-o", image_path, 
+            "--nopreview",  # Option to disable preview
+            "-t", "1"       # Capture duration (1 ms)
         ], check=True)
         print("Image captured and saved as 'image.jpg'.")
         return image_path
