@@ -5,6 +5,7 @@ import threading
 import time
 from gtts import gTTS
 from translate import Translator  # Add the translator import
+from gradio_client import Client, handle_file  # Ensure correct import for Client
 
 # Import face recognition functions from face_recognition.py
 from face_recognition import recognize_faces
